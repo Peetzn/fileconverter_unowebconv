@@ -352,6 +352,6 @@ class converter implements \core_files\converter_interface {
 
     static function log($msg) {
         $log = gmdate('H:i:s', time()) . ":  " . var_export($msg,true);
-        file_put_contents("/tmp/log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+        @file_put_contents(sys_get_temp_dir() . "/unowebconv_log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
     }
 }

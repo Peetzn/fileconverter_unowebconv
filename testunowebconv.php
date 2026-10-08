@@ -46,7 +46,7 @@ $converter = new converter();
 $response = $converter::test_unoconv_path();
 $converter::log($response);
 $path = get_config('fileconverter_unowebconv', 'pathtounoconvws');
-$msg = $OUTPUT->get_string('pluginname', 'fileconverter_unowebconv');
+$unoresponse = '';
 if ($response->status === converter::UNOCONVWSPATH_OK) {
     $unoresponse = $OUTPUT->notification(get_string('test_unoconvwsok', 'fileconverter_unowebconv'), 'success');
 }
@@ -55,8 +55,7 @@ else if ($response->status === converter::UNOCONVWSPATH_ERROR) {
 }
 
 $returl = new moodle_url('/admin/settings.php', array('section' => 'fileconverterunowebconv'));
-$msg .= $unoresponse;
-$msg .= $OUTPUT->continue_button($returl);
 echo $OUTPUT->header();
 echo $OUTPUT->box($unoresponse, 'generalbox');
+echo $OUTPUT->continue_button($returl);
 echo $OUTPUT->footer();
